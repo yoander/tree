@@ -19,7 +19,7 @@ EOD;
 
 const TREE_EMPTY_BRANCH_TPL = <<<'EOD'
         <li>
-            <div id="%s" class="branch"><a href="./#">
+            <div id="%s" class="branch"><a href="%s">
                 <span class="glyphicon glyphicon-folder-close"></span>
                 <span class="node-label">%s</span></a>
             </div>
@@ -49,7 +49,7 @@ class HtmlHelper
         if ($hasChildren) {
             return sprintf(TREE_BRANCH_TPL, $id, $text, '%s');
         } elseif ($isDir) {
-            return sprintf(TREE_EMPTY_BRANCH_TPL, $id, $text);
+            return sprintf(TREE_EMPTY_BRANCH_TPL, $id, $path, $text);
         } else {
             return sprintf(TREE_LEAF_TPL, $id, $path, $text);
         }
@@ -67,7 +67,7 @@ class HtmlHelper
                     $node->getText(),
                     $node->hasChildren(),
                     $node->isDir(),
-                    self::$slugMappers[$node->getId()]
+                    self::$slugMappers[$node->getRealPath()]
                  );
             } else {
                 $items[] = sprintf(
@@ -75,7 +75,8 @@ class HtmlHelper
                         $node->getId(),
                         $node->getText(),
                         $node->hasChildren(),
-                        $node->isDir()
+                        $node->isDir(),
+                        self::$slugMappers[$node->getRealPath()]
                     ),
                     implode(
                         '',
@@ -89,12 +90,9 @@ class HtmlHelper
 
     public static function printTree($nodes, $slugMappers)
     {
-         self::$slugMappers = array_flip($slugMappers);
+        self::$slugMappers = array_flip($slugMappers);
         $items = self::traverse($nodes);
 
-
-
-        d(self::$slugMappers);
         if (!empty($items)) {
             return sprintf(TREE_TPL, implode('', $items));
         }
