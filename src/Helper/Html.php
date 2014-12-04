@@ -35,7 +35,7 @@ const TREE_LEAF_TPL = <<<'EOD'
         </li>
 EOD;
 
-class HtmlHelper
+class Html
 {
     private static $slugMappers = [];
 

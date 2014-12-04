@@ -7,7 +7,7 @@ use Tree\Util\SlugPathMapper;
 use Voltus\File\FileReader;
 use Voltus\File\FileWriter;
 
-class RenderHelper
+class Render
 {
     public static function output($basePath, $slug = '')
     {
@@ -27,7 +27,8 @@ class RenderHelper
         }
 
         if (is_file($path)) {
-            return $path;
+            $fr = new FileReader($path);
+            return new Output($fr->getContent(), Output::TYPE_CONTENT);
         }
 
         $tree = (new TreeBuilder($path))->recursive(false)->get();
@@ -36,6 +37,8 @@ class RenderHelper
 
         $fw->save(serialize($slugPathMapper));
 
-        return HtmlHelper::printTree($tree, SlugPathMapper::instance()->getArray());
+        $htmlTree = Html::printTree($tree, SlugPathMapper::instance()->getArray());
+
+        return  new Output($htmlTree);
     }
 }
