@@ -14,4 +14,4 @@ $loader->register();
 $loader->addNamespace('Tree', TREE_ROOT_DIR . '/src/');
 $loader->addNamespace('Voltus\Pattern', __DIR__ . '/vendor/voltus-pattern/src');
 $loader->addNamespace('Voltus\Slugify', __DIR__ . '/vendor/voltus-slugify/src');
-$loader->addNamespace('Voltus\Persisten\File', __DIR__ . '/vendor/voltus-file/src');
+$loader->addNamespace('Voltus\File', __DIR__ . '/vendor/voltus-file/src');
