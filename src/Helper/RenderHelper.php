@@ -4,7 +4,8 @@ namespace Tree\Helper;
 
 use Tree\TreeBuilder;
 use Tree\Util\SlugPathMapper;
-use Voltus\Persisten\File\FileStorage;
+use Voltus\File\FileReader;
+use Voltus\File\FileWriter;
 
 class RenderHelper
 {
@@ -12,14 +13,16 @@ class RenderHelper
     {
         $slugPathMapper = [];
         $file = sys_get_temp_dir() . '/tree.txt';
-        $fs = new FileStorage($file);
+
+        $fw = new FileWriter($file);
 
         SlugPathMapper::instance()->setBasePath($basePath);
 
         if (empty($slug)) {
             $path = $basePath;
         } else {
-            $slugPathMapper = $fs->get();
+            $fr = new FileReader($file);
+            $slugPathMapper = unserialize($fr->getContent());
             $path = isset($slugPathMapper[$slug]) ? $slugPathMapper[$slug] : '';
         }
 
@@ -31,7 +34,7 @@ class RenderHelper
 
         $slugPathMapper += SlugPathMapper::instance()->getArray();
 
-        $fs->setData($slugPathMapper)->save();
+        $fw->save(serialize($slugPathMapper));
 
         return HtmlHelper::printTree($tree, SlugPathMapper::instance()->getArray());
     }
