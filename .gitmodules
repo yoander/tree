@@ -1,0 +1,12 @@
+[submodule "voltus-file"]
+	path = vendor/voltus-file
+	url = /home/yoander/projects/voltus/voltus-file/
+[submodule "local-voltus-autoloader"]
+	path = vendor/voltus-autoloader
+	url = /home/yoander/projects/voltus/voltus-autoloader/
+[submodule "local-voltus-pattern"]
+	path = vendor/voltus-pattern
+	url = /home/yoander/projects/voltus/voltus-pattern/
+[submodule "local-voltus-slugify"]
+	path = vendor/voltus-slugify
+	url = /home/yoander/projects/voltus/voltus-slugify/
