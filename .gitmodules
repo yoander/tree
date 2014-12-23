@@ -1,12 +1,12 @@
 [submodule "voltus-file"]
 	path = vendor/voltus-file
-	url = /home/yoander/projects/voltus/voltus-file/
+	url = https://github.com/voltus/voltus-file.git 
 [submodule "local-voltus-autoloader"]
 	path = vendor/voltus-autoloader
-	url = /home/yoander/projects/voltus/voltus-autoloader/
+	url = https://github.com/voltus/voltus-autloader.git 
 [submodule "local-voltus-pattern"]
 	path = vendor/voltus-pattern
-	url = /home/yoander/projects/voltus/voltus-pattern/
+	url = https://github.com/voltus/voltus-pattern.git 
 [submodule "local-voltus-slugify"]
 	path = vendor/voltus-slugify
-	url = /home/yoander/projects/voltus/voltus-slugify/
+	url = https://github.com/voltus/voltus-slugify.git 
