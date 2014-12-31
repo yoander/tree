@@ -28,7 +28,8 @@ class Render
 
         if (is_file($path)) {
             $fr = new FileReader($path);
-            return new Output($fr->getContent(), Output::TYPE_CONTENT);
+            $contentType = pathinfo($path, PATHINFO_EXTENSION);
+            return new Output($fr->getContent(), Output::TYPE_CONTENT, $contentType);
         }
 
         $tree = (new TreeBuilder($path))->recursive(false)->get();

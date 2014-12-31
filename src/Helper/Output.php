@@ -10,17 +10,25 @@ class Output
 
     private $type = self::TYPE_TREE;
 
+    private $contentType = self::TYPE_TREE;
+
     private $raw = null;
 
-    public function __construct($raw, $type = self::TYPE_TREE)
+    public function __construct($raw, $type = self::TYPE_TREE, $contentType = null)
     {
         $this->raw = $raw;
         $this->type = $type;
+        $this->contentType = $contentType;
     }
 
     public function getType()
     {
         return $this->type;
+    }
+
+    public function getContentType()
+    {
+        return $this->contentType;
     }
 
     private function raw()
