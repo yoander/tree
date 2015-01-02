@@ -38,11 +38,11 @@ class Output
 
     public function getContent()
     {
-        return $this->raw();
+        return self::TYPE_CONTENT == $this->type ? $this->raw() : null;
     }
 
     public function getTree()
     {
-        return $this->raw();
+        return self::TYPE_TREE == $this->type ? $this->raw() : null;
     }
 }
