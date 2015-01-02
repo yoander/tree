@@ -8,7 +8,7 @@ EOD;
 
 const TREE_BRANCH_TPL = <<<'EOD'
         <li class="branch">
-            <div id="%s"><a href="./#">
+            <div id="%s"><a href="./#" data-ref="%s">
                 <span class="glyphicon glyphicon-folder-close"></span>
                 <span class="node-label">%s</span></a>
                 <!-- Tree Child nodes -->
@@ -18,8 +18,8 @@ const TREE_BRANCH_TPL = <<<'EOD'
 EOD;
 
 const TREE_EMPTY_BRANCH_TPL = <<<'EOD'
-        <li class="empty-branch">
-            <div id="%s"><a href="%s">
+        <li class="branch">
+            <div id="%s"><a href="./#" data-ref="%s">
                 <span class="glyphicon glyphicon-folder-close"></span>
                 <span class="node-label">%s</span></a>
             </div>
@@ -28,7 +28,7 @@ EOD;
 
 const TREE_LEAF_TPL = <<<'EOD'
         <li class="leaf">
-            <div id="%s"><a href="%s">
+            <div id="%s"><a href="./#" data-ref="%s">
                 <span class="glyphicon glyphicon-file"></span>
                 <span class="node-label">%s</span></a>
             </div>
@@ -47,7 +47,7 @@ class Html
         $path = '')
     {
         if ($hasChildren) {
-            return sprintf(TREE_BRANCH_TPL, $id, $text, '%s');
+            return sprintf(TREE_BRANCH_TPL, $id, $text, $path, '%s');
         } elseif ($isDir) {
             return sprintf(TREE_EMPTY_BRANCH_TPL, $id, $path, $text);
         } else {
