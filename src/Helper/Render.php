@@ -14,10 +14,6 @@ class Render
         $slugPathMapper = [];
         $file = sys_get_temp_dir() . '/tree.txt';
 
-        $fw = new FileWriter($file);
-
-        SlugPathMapper::instance()->setBasePath($basePath);
-
         if (empty($slug)) {
             $path = $basePath;
         } else {
@@ -34,8 +30,10 @@ class Render
 
         $tree = (new TreeBuilder($path))->recursive(false)->get();
 
+        SlugPathMapper::instance()->setBasePath($basePath);
         $slugPathMapper += SlugPathMapper::instance()->getArray();
 
+        $fw = new FileWriter($file);
         $fw->save(serialize($slugPathMapper));
 
         $htmlTree = Html::printTree($tree, SlugPathMapper::instance()->getArray());
