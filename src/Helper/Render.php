@@ -28,9 +28,8 @@ class Render
             return new Output($fr->getContent(), Output::TYPE_CONTENT, $contentType);
         }
 
-        $tree = (new TreeBuilder($path))->recursive(false)->get();
-
         SlugPathMapper::instance()->setBasePath($basePath);
+        $tree = (new TreeBuilder($path))->recursive(false)->get();
         $slugPathMapper += SlugPathMapper::instance()->getArray();
 
         $fw = new FileWriter($file);
