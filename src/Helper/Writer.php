@@ -9,7 +9,7 @@ use Voltus\File\FileWriter;
 
 class Writer 
 {
-    public static function ($slug, $content = '')
+    public static function write($slug, $content = '')
     {
         $slugPathMapper = [];
         $file = sys_get_temp_dir() . '/tree.txt';
